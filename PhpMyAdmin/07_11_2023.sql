@@ -31,15 +31,16 @@
     INSERT INTO klienci SET idklienta=NULL, imie="Steve", nazwisko="McQueen", miejscowosc="Los Angeles"
 
 -- ZADANIA
--- 1.
+-- ZNAJDŹ W BAZIE:
+-- 1. Książki ułożone alfabetycznie wg tytułu.
     SELECT tytul FROM ksiazki ORDER BY tytul
--- 2.
+-- 2. Najdroższą książkę w bazie.
     SELECT tytul, cena FROM ksiazki ORDER BY cena DESC LIMIT 1
--- 3. 
+-- 3. Wszystnie wysłane zamowienia.
     SELECT * FROM zamowienia WHERE zamowienia.status = "wyslano"
--- 4. 
+-- 4. Wszystkich klientow o nazwisku Rutkowski.
     SELECT imie, nazwisko FROM klienci WHERE klienci.nazwisko = "Rutkowski"
--- 5. 
+-- 5. Książki zawierające 
     SELECT tytul FROM ksiazki WHERE ksiazki.tytul LIKE "%PHP%"
 -- 6. 
     SELECT * FROM zamowienia ORDER BY zamowienia.data DESC
