@@ -20,3 +20,6 @@ SELECT klienci.ImieKlienta, klienci.NazwiskoKlienta,
 	FROM zamowienia
     WHERE klienci.IDKlienta=zamowienia.IDKlienta) AS DataOstZam
 FROM klienci
+
+-- 4. Zrób listę klientów i wszystkich szczegółów dotyczących ich ostatniego zamówienia.
+SELECT klienci.ImieKlienta, klienci.NazwiskoKlienta, zamowienia.NumerZamowienia, zamowienia.DataZamowienia, zamowienia.DataWysylki, (SELECT MAX(zamowienia.DataZamowienia) FROM zamowienia WHERE klienci.IDKlienta=zamowienia.IDKlienta) AS DataOstZam FROM klienci INNER join zamowienia ON klienci.IDKlienta=zamowienia.IDKlienta GROUP BY klienci.NazwiskoKlienta;
