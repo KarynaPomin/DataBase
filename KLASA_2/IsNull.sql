@@ -17,5 +17,10 @@ SELECT agenci.ImieAgenta, agenci.NazwiskoAgenta FROM agenci
 WHERE agenci.IDAgenta NOT IN (SELECT imprezy.IDAgenta FROM imprezy)
 
 -- 3.) Wyświetl wszystkich klientów agencji i datę ostatniej rezerwacji każdego z nich. -- BAZA DANYCH: AgencjaArtystycznaPrzyklad
+SELECT CONCAT(klienci.ImieKlienta, " ",klienci.NazwiskoKlienta) AS Klient,
+  (SELECT MAX(imprezy.DzienRozpoczecia) AS DzienRozpoczecia
+  FROM imprezy
+  WHERE klienci.IDKlienta=imprezy.IDKlienta ) as OstRez
+from klienci
 
 
