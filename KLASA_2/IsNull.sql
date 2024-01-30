@@ -13,5 +13,7 @@ ON skladniki.IDSkladnika=skladniki_przepisow.IDSkladnika
 WHERE skladniki_przepisow.IDPrzepisu IS NULL;
 
 -- Wyświetl agentów, którzy do tych czas nie podpisali kontrakru z żadnym wykonawcą (nie maja żadnej imprezy) -- BAZA DANYCH: AgencjaArtystycznaPrzyklad
+SELECT agenci.ImieAgenta, agenci.NazwiskoAgenta FROM agenci
+WHERE agenci.IDAgenta NOT IN (SELECT imprezy.IDAgenta FROM imprezy)
 
 
