@@ -1,4 +1,4 @@
--- Wymień składniki nieużywane dotąd w żadnym przepisie (Baza danych: PrzepisyPrzyklad)
+-- Wymień składniki nieużywane dotąd w żadnym przepisie -- Baza danych: PrzepisyPrzyklad)
 
 -- SPOSÓB I
 SELECT skladniki.NazwaSkladnika
@@ -12,4 +12,6 @@ LEFT OUTER JOIN skladniki_przepisow
 ON skladniki.IDSkladnika=skladniki_przepisow.IDSkladnika
 WHERE skladniki_przepisow.IDPrzepisu IS NULL;
 
---
+-- Wyświetl agentów, którzy do tych czas nie podpisali kontrakru z żadnym wykonawcą (nie maja żadnej imprezy) -- BAZA DANYCH: AgencjaArtystycznaPrzyklad
+
+
