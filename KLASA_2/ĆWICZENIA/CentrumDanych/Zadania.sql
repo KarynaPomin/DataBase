@@ -50,6 +50,14 @@ HAVING COUNT(*) >= 10
 # Podaj datę awarii oraz symbol sekcji, w której nastąpiła awaria.
 odp: 23-12-2015, sekcja Q
 
+SELECT DATE_FORMAT(awarie.czas_awarii, '%d-%m-%Y') AS Data, komputery.sekcja
+FROM komputery, awarie
+WHERE komputery.numer_komputera=awarie.numer_komputera
+AND DATE_FORMAT(awarie.czas_awarii, '%d-%m-%Y') = (SELECT DATE_FORMAT(awarie.czas_awarii, '%d-%m-%Y') AS AllAw
+									FROM awarie GROUP BY AllAw ORDER BY COUNT(*) desc LIMIT 1)
+GROUP BY komputery.sekcja
+ORDER BY COUNT(*) DESC
+LIMIT 1
 
 
 
