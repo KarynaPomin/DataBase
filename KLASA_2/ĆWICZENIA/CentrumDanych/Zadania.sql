@@ -76,6 +76,17 @@ WHERE awarie.numer_zgloszenia=naprawy.numer_zgloszenia
 ORDER BY TIMESTAMPDIFF(SECOND, awarie.czas_awarii, naprawy.czas_naprawy) DESC
 LIMIT 1
 
+##############
+### ZADANIE 5
+# Podaj liczbę komputerów, które nie uległy żadnej awarii o priorytecie większym lub równym 8 (wliczamy w to też komputery, które w ogóle nie uległy awarii).
+odp: 149
+
+SELECT COUNT(komputery.numer_komputera)
+FROM komputery 
+LEFT JOIN awarie ON komputery.numer_komputera=awarie.numer_komputera AND awarie.priorytet >= 8
+WHERE awarie.numer_komputera IS NULL 
+
+
 
 
  
