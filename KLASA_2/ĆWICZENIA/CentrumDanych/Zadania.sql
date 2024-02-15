@@ -5,6 +5,18 @@
 # Znajdź 10 najczęstszych rodzajów dysków (czyli 10 najczęściej występujących pojemności) wśród komputerów w centrum. 
 # Dla każdej ze znalezionych pojemności podaj liczbę komputerów z takim dyskiem. 
 # Posortuj zestawienie nierosnąco względem liczby komputerów z dyskiem o danej pojemności.
+Odp:: 
+Pojemność Liczba
+300 173
+200 31
+500 31
+800 29
+700 28
+600 26
+400 20
+290 11
+220 10
+160 10
 
 SELECT pojemnosc_dysku, COUNT(pojemnosc_dysku) AS Pojemnosci
 FROM komputery 
@@ -16,6 +28,12 @@ LIMIT 10
 ### ZADANIE 2
 # Znajdź wszystkie komputery w sekcji A, w których trzeba było przynajmniej dziesięciokrotnie wymieniać podzespoły. 
 # Podaj ich numery, a także liczbę wymian podzespołów dla każdego z nich.
+odp:
+Komputer Liczba wymian podzespołów
+Komputer 202 12
+Komputer 123 11
+Komputer 171 12
+Komputer 42 11
 
 SELECT komputery.numer_komputera, COUNT(*) 
 FROM komputery, awarie, naprawy
@@ -24,6 +42,11 @@ AND komputery.sekcja='A' AND naprawy.rodzaj LIKE 'wymiana%'
 GROUP BY komputery.numer_komputera
 HAVING COUNT(*) >= 10
 
+###############
+### ZADANIE 3
+# Pewnego dnia nastąpiła awaria wszystkich komputerów w jednej z sekcji. 
+# Podaj datę awarii oraz symbol sekcji, w której nastąpiła awaria.
+odp: 23-12-2015, sekcja Q
 
 
 
