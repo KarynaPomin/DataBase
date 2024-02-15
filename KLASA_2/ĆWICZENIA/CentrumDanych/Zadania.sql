@@ -1,5 +1,7 @@
 # SELECT *, DATE_FORMAT(naprawy.czas_naprawy, "%d") AS days FROM naprawy #TimeStamp
+# SELECT DISTINCT --> pomija dublikaty
 
+ 
 ###############
 ### ZADANIE 1
 # Znajdź 10 najczęstszych rodzajów dysków (czyli 10 najczęściej występujących pojemności) wśród komputerów w centrum. 
