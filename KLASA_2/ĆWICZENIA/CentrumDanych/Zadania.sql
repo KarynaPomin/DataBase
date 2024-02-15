@@ -1,5 +1,7 @@
 # SELECT *, DATE_FORMAT(naprawy.czas_naprawy, "%d") AS days FROM naprawy #TimeStamp
 # SELECT DISTINCT --> pomija dublikaty
+# TIMESTAMPDIFF(SECOND, POCZ, KON) --> jednostka czasu, różnica
+# DATEDIFF(POCZ, KON) --> różnica dni
 
  
 ###############
@@ -57,6 +59,21 @@ AND DATE_FORMAT(awarie.czas_awarii, '%d-%m-%Y') = (SELECT DATE_FORMAT(awarie.cza
 									FROM awarie GROUP BY AllAw ORDER BY COUNT(*) desc LIMIT 1)
 GROUP BY komputery.sekcja
 ORDER BY COUNT(*) DESC
+LIMIT 1
+
+###############
+### ZADANIE 4
+# Znajdź awarię, której usunięcie trwało najdłużej (czas liczymy od wystąpienia awarii do momentu zakończenia ostatniej z napraw, 
+# jakiej ta awaria wymagała). Podaj numer zgłoszenia, czas wystąpienia awarii i czas zakończenia ostatniej naprawy.
+odp:
+Numer zgłoszenia 2087
+Czas wystąpienia awarii 06-11-2015 12:38:46
+Czas zakończenia ostatniej naprawy 13-11-2015 12:38:32
+
+SELECT awarie.numer_zgloszenia, awarie.czas_awarii, naprawy.czas_naprawy
+FROM awarie, naprawy
+WHERE awarie.numer_zgloszenia=naprawy.numer_zgloszenia
+ORDER BY TIMESTAMPDIFF(SECOND, awarie.czas_awarii, naprawy.czas_naprawy) DESC
 LIMIT 1
 
 
