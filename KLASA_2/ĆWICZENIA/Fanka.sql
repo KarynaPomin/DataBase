@@ -36,10 +36,26 @@ WHERE druzyny.id_druzyny=wyniki.id_druzyny
 GROUP BY druzyny.nazwa
 HAVING SUM(wyniki.bramki_zdobyte) = SUM(wyniki.bramki_stracone)
 
-Zadanie 5.3. (0–3)
-Podaj liczby meczów wyjazdowych – Wygranych, Przegranych i Zremisowanych – przez drużynę Galop Kucykowo.
+###############
+### ZADANIE 3
+# Podaj liczby meczów wyjazdowych – Wygranych, Przegranych i Zremisowanych – przez drużynę Galop Kucykowo.
 Odp: P 452 Z 170 W 579
 
-Zadanie 5.4. (0–3)
-Podaj, ilu sędziów spośród tych zapisanych w pliku sedziowie.txt nie sędziowało żadnego pucharowego meczu drużyny Galop Kucykowo.
+SELECT 
+	(SELECT COUNT(*) FROM wyniki 
+		WHERE wyniki.bramki_zdobyte>wyniki.bramki_stracone
+		AND wyniki.gdzie LIKE 'W') 
+		as wygrane, 
+	(SELECT COUNT(*) FROM wyniki 
+		WHERE wyniki.bramki_zdobyte<wyniki.bramki_stracone
+		AND wyniki.gdzie LIKE 'W')
+		as przegrane, 
+	(SELECT COUNT(*) FROM wyniki 
+		WHERE wyniki.bramki_zdobyte=wyniki.bramki_stracone
+		AND wyniki.gdzie LIKE 'W') 
+		as zremisowamie
+
+###############
+### ZADANIE 4
+# Podaj, ilu sędziów spośród tych zapisanych w pliku sedziowie.txt nie sędziowało żadnego pucharowego meczu drużyny Galop Kucykowo.
 Odp: 22
