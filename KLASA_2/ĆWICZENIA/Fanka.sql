@@ -24,9 +24,17 @@ GROUP BY Rok
 ORDER BY IleMeczow DESC
 LIMIT 1
 
-Zadanie 5.2. (0–2)
-Podaj listę zawierającą nazwy drużyn, z którymi drużyna Galop Kucykowo ma zerowy bilans bramkowy, tzn. łączna liczba bramek zdobytych we wszystkich meczach rozegranych z daną drużyną jest równa łącznej liczbie bramek straconych w tych meczach.
+###############
+### ZADANIE 2
+# Podaj listę zawierającą nazwy drużyn, z którymi drużyna Galop Kucykowo ma zerowy bilans bramkowy, 
+# tzn. łączna liczba bramek zdobytych we wszystkich meczach rozegranych z daną drużyną jest równa łącznej liczbie bramek straconych w tych meczach.
 Odp:Zwinne Mewy, Nocne Pumy
+
+SELECT druzyny.nazwa, SUM(wyniki.bramki_zdobyte), SUM(wyniki.bramki_stracone)
+FROM druzyny, wyniki
+WHERE druzyny.id_druzyny=wyniki.id_druzyny
+GROUP BY druzyny.nazwa
+HAVING SUM(wyniki.bramki_zdobyte) = SUM(wyniki.bramki_stracone)
 
 Zadanie 5.3. (0–3)
 Podaj liczby meczów wyjazdowych – Wygranych, Przegranych i Zremisowanych – przez drużynę Galop Kucykowo.
