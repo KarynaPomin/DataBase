@@ -59,3 +59,12 @@ SELECT
 ### ZADANIE 4
 # Podaj, ilu sędziów spośród tych zapisanych w pliku sedziowie.txt nie sędziowało żadnego pucharowego meczu drużyny Galop Kucykowo.
 Odp: 22
+
+SELECT COUNT(*)
+FROM sedziowie
+WHERE nr_licencji NOT IN 
+(
+	SELECT DISTINCT nr_licencji 
+	FROM wyniki
+	WHERE rodzaj_meczu LIKE 'P'
+)
