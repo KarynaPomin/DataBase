@@ -68,3 +68,9 @@ WHERE nr_licencji NOT IN
 	FROM wyniki
 	WHERE rodzaj_meczu LIKE 'P'
 )
+
+
+#  Utwórz zestawienie zawierające informacje o liczbie wyjazdowych i w terenie turniejów (osobno) z poszczególnych rodzajów meczu,
+SELECT rodzaj_meczu, COUNT(CASE WHEN gdzie='D' THEN 1 END) AS Dom, COUNT(CASE WHEN gdzie='W' THEN 1 END) AS Wyj
+FROM wyniki
+GROUP BY rodzaj_meczu
