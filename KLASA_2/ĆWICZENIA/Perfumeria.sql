@@ -1,5 +1,5 @@
 
-### ZADANIE 1
+### ZADANIE 1 ###
 # Podaj listę wszystkich nazw perfum, których jednym ze składników jest „absolut jasminu”.
 # Odp:: Ologne Doud, Oyal Priather, Uelques FleuE
 
@@ -9,28 +9,28 @@ WHERE perfumy.id_perfum=sklad.id_perfum
 	AND nazwa_skladnika LIKE "%absolut jasminu%"
 
 	
-### ZADANIE 2
+### ZADANIE 2 ###
 # Podaj listę różnych rodzin zapachów. Dla każdej rodziny podaj jej nazwę,
 # cenę najtańszych perfum z tej rodziny i ich nazwę.
 # odp:
-# aromatyczna	Ibrary Ollec Damore 	124
-# cytrusowa	Sian Grad	259
-# cytrusowo-aromatyczna	Re Nostrum,ir	178
-# drzewna	Pperlee Bouquet	123
-# kwiatowa	Ose Deurmaline	110
-# kwiatowo-drzewna	Rougna	104
-# kwiatowo-orientalna	Arla : Vivace	103
-# kwiatowo-szyprowa	Etish Pothal	287
-# orientalna	Anille La Tosca	113
+# aromatyczna		Ibrary Ollec Damore 	124
+# cytrusowa		Sian Grad		259
+# cytrusowo-aromatyczna	Re Nostrum,ir		178
+# drzewna		Pperlee Bouquet		123
+# kwiatowa		Ose Deurmaline		110
+# kwiatowo-drzewna	Rougna			104
+# kwiatowo-orientalna	Arla : Vivace		103
+# kwiatowo-szyprowa	Etish Pothal		287
+# orientalna		Anille La Tosca		113
 # orientalna lagodna	Ndy Warhol S Rose	122
-# orientalno-drzewna	LackNight	138
-# owocowa	Ake Perfucturne 	154
-# pudrowa	Ivm Cristal	139
-# skorzana	Ui Mare	112
-# szyprowa	Usk ti 1888	226
-# szyprowo-skorzana	Uir OtPlace	158
-# wodna	Ilver Mounaya 	146
-# zielona	EOman	406
+# orientalno-drzewna	LackNight		138
+# owocowa		Ake Perfucturne 	154
+# pudrowa		Ivm Cristal		139
+# skorzana		Ui Mare			112
+# szyprowa		Usk ti 	1888		226
+# szyprowo-skorzana	Uir OtPlace		158
+# wodna			Ilver Mounaya 		146
+# zielona		EOman			406
 
 SELECT nazwa_p, rodzina_zapachow, cena
 FROM perfumy,
@@ -41,7 +41,7 @@ WHERE rodzina_zapachow=Rdz_zap AND cena=Cena_Min
 ORDER BY rodzina_zapachow
 
 	
-### ZADANIE 3
+### ZADANIE 3 ###
 # Utwórz uporządkowaną alfabetycznie listę wszystkich nazw marek, 
 # które nie zawierają w swoich perfumach żadnego składnika mającego
 # w nazwie słowo „paczula”.
@@ -49,24 +49,24 @@ ORDER BY rodzina_zapachow
 
 SELECT nazwa_m FROM marki
 WHERE id_marki NOT IN (SELECT marki.id_marki FROM marki, perfumy, sklad
-								WHERE marki.id_marki = perfumy.id_marki AND perfumy.id_perfum = sklad.id_perfum
-								AND nazwa_skladnika LIKE '%paczula%')
+	WHERE marki.id_marki = perfumy.id_marki AND perfumy.id_perfum = sklad.id_perfum
+		AND nazwa_skladnika LIKE '%paczula%')
 ORDER BY nazwa_m
 
 
-### ZADANIE 4
+### ZADANIE 4 ###
 # Ceny wszystkich perfum marki Mou De Rosine z rodziny o nazwie „orientalno-drzewna” zostały obniżone o 15%.
 # Podaj listę zawierającą wszystkie nazwy takich perfum i ich ceny po obniżce.
 # Listę posortuj niemalejąco według ceny.
 #odp:
-#Ourn Boise	141,95
-#Onou Back	222,7
-#Pic An	230,35
-#Nterl Bambola	292,4
+#Ourn Boise		141,95
+#Onou Back		222,7
+#Pic An			230,35
+#Nterl Bambola		292,4
 #Ubilatio Champs	381,65
 #Ibrary Ollec Dor	489,6
-#Ate An	544,85
-#Elov & Musc	660,45
+#Ate An			544,85
+#Elov & Musc		660,45
 
 SELECT nazwa_p, (cena*0.85) AS cena_obnizka
 FROM marki, perfumy
@@ -76,4 +76,19 @@ WHERE marki.id_marki = perfumy.id_marki
 ORDER BY cena_obnizka
 
 
+### ZADANIE 5 ###
+# Istnieją marki, których wszystkie perfumy należą do tylko jednej rodziny zapachów.
+# Podaj listę wszystkich nazw takich marek. Lista powinna zawierać nazwy marek i nazwy 
+# odpowiednich rodzin zapachów.
+# odp:
+# Enmith	        kwiatowo-orientalna
+# Ightce	        aromatyczna
+# Issmkunstwerke	orientalna
+# Nnick a Kieffo	orientalna
+# X ICologne	        orientalno-drzewna
 
+SELECT marki.nazwa_m, perfumy.rodzina_zapachow 
+FROM marki 
+INNER JOIN perfumy ON marki.id_marki = perfumy.id_marki
+GROUP BY marki.nazwa_m
+HAVING COUNT(DISTINCT perfumy.rodzina_zapachow) = 1
