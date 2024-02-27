@@ -1,3 +1,4 @@
+
 ### ZADANIE 1
 # Podaj listę wszystkich nazw perfum, których jednym ze składników jest „absolut jasminu”.
 # Odp:: Ologne Doud, Oyal Priather, Uelques FleuE
@@ -7,6 +8,7 @@ FROM perfumy, sklad
 WHERE perfumy.id_perfum=sklad.id_perfum
 	AND nazwa_skladnika LIKE "%absolut jasminu%"
 
+	
 ### ZADANIE 2
 # Podaj listę różnych rodzin zapachów. Dla każdej rodziny podaj jej nazwę,
 # cenę najtańszych perfum z tej rodziny i ich nazwę.
@@ -38,6 +40,7 @@ FROM perfumy,
 WHERE rodzina_zapachow=Rdz_zap AND cena=Cena_Min
 ORDER BY rodzina_zapachow
 
+	
 ### ZADANIE 3
 # Utwórz uporządkowaną alfabetycznie listę wszystkich nazw marek, 
 # które nie zawierają w swoich perfumach żadnego składnika mającego
@@ -50,6 +53,27 @@ WHERE id_marki NOT IN (SELECT marki.id_marki FROM marki, perfumy, sklad
 								AND nazwa_skladnika LIKE '%paczula%')
 ORDER BY nazwa_m
 
+
+### ZADANIE 4
+# Ceny wszystkich perfum marki Mou De Rosine z rodziny o nazwie „orientalno-drzewna” zostały obniżone o 15%.
+# Podaj listę zawierającą wszystkie nazwy takich perfum i ich ceny po obniżce.
+# Listę posortuj niemalejąco według ceny.
+#odp:
+#Ourn Boise	141,95
+#Onou Back	222,7
+#Pic An	230,35
+#Nterl Bambola	292,4
+#Ubilatio Champs	381,65
+#Ibrary Ollec Dor	489,6
+#Ate An	544,85
+#Elov & Musc	660,45
+
+SELECT nazwa_p, (cena*0.85) AS cena_obnizka
+FROM marki, perfumy
+WHERE marki.id_marki = perfumy.id_marki
+	AND rodzina_zapachow = 'orientalno-drzewna'
+	AND nazwa_m = 'Mou De Rosine'
+ORDER BY cena_obnizka
 
 
 
