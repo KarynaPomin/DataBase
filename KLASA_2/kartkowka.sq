@@ -1,0 +1,14 @@
+# Wymień wszystkie przepisy i wszystkie skladniki każdego przepisu la takich przepisów , które zawierają owoce morza. (BAZA: PRZEPISY PZYKLAD)
+
+SELECT DISTINCT przepisy.NazwaPrzepisu, skladniki.NazwaSkladnika
+FROM kategorie_skladnikow, przepisy, skladniki_przepisow, skladniki
+WHERE przepisy.IDPrzepisu = skladniki_przepisow.IDPrzepisu
+	AND skladniki_przepisow.IDPrzepisu = przepisy.IDPrzepisu
+    AND kategorie_skladnikow.IDKategoriiSkladnika = skladniki.IDKategoriiSkladnika
+    AND kategorie_skladnikow.OpisKategoriiSkladnika LIKE 'owoce morza';
+
+# Zrób listę klientów i wszystkich szczegułów dotyczących ich ostaniego zamówienia. (BAZA: ZAMOWIENIA PRZYKLAD)
+
+SELECT klienci.ImieKlienta, klienci.NazwiskoKlienta, 
+  (SELECT MAX(zamowienia.DataZamowienia) FROM zamowienia WHERE klienci.IDKlienta = zamowienia.IDKlienta) AS DataOstZam
+FROM klienci
