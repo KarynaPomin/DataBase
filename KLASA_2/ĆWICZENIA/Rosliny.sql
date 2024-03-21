@@ -50,8 +50,8 @@
   ORDER BY COUNT(*);
 
 
-9. Utwórz zestawienie, w którym podasz liczbę pozycji złożonych przez osoby z poszczególnych miast zamówień 
-na rośliny kwitnące dokładnie w okresie VII–VIII.
+# 9. Utwórz zestawienie, w którym podasz liczbę pozycji złożonych przez osoby z poszczególnych miast zamówień 
+# na rośliny kwitnące dokładnie w okresie VII–VIII.
   SELECT osoby.Miasto, COUNT(zamowienia.Id_klienta) AS LiczbaPozycji
   FROM zamowienia
 	  INNER JOIN rosliny ON zamowienia.Id_rosliny = rosliny.Id_rosliny
