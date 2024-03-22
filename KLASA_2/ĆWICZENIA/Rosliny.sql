@@ -29,9 +29,7 @@
   LIMIT 3;
 
 # 6. Oblicz sumę objętości wszystkich doniczek roślin w cenie do 5 zł włącznie.
-  SELECT SUM(rosliny.Rozmiary_doniczki) AS ObjetoscDoniczek
-  FROM rosliny
-  WHERE rosliny.Rozmiary_doniczki >= 5;
+  ###
 
 # 7. Podaj 3 najpopularniejsze imiona osób.
   SELECT osoby.Imie
