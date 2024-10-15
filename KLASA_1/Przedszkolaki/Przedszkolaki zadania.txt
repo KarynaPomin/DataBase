@@ -1,0 +1,17 @@
+1. Wszyscy chłopcy.
+2. Wszystkie Maje.
+3. Wszyscy przynajmniej 5-letni chłopcy o nazwiskach na "K" i imionach nie na "K". --> Like 'K*'
+4. Wszystkich trzylatków o nazwisku kończącym się na "e". --> Like '*e'
+5. Suma miejsc w przedszkolach.
+6. Średnia ilość miejsc w przedszkolach.
+7. Jakie przedszkola preferuje Tomasz Dobrzeniecki?
+8. Ile razy na liście preferencji znajduje się Przedszkole nr 4 Gwarny Dworek?
+
+-------
+
+9. Zrób zestawienie 3 pierwszych miesięcy z największą ilością urodzonych dzieci.
+    KONSTRUUJ: Mid([DZIECI] ! [PESEL];  4 ;2) - 20 
+
+10. Które przedszkola nie były wybrane w 1, 2 i 3 preferencji (3 zestawienia)
+
+11. Ilu dzieci wykorzystało tylko jeden wybór przedszkola, ilu dwa wybory? Czy są dzieci, które chcą od razu iść do podstawówki?
